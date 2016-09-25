@@ -266,7 +266,7 @@
 				DEVELOPMENT_TEAM = FSWS8S66CF;
 				INFOPLIST_FILE = App/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.spotify.ScrollableImageView;
+				PRODUCT_BUNDLE_IDENTIFIER = com.joetam.ScrollableImageView;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -278,7 +278,7 @@
 				DEVELOPMENT_TEAM = FSWS8S66CF;
 				INFOPLIST_FILE = App/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.spotify.ScrollableImageView;
+				PRODUCT_BUNDLE_IDENTIFIER = com.joetam.ScrollableImageView;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
