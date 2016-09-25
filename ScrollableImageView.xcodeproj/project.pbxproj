@@ -15,7 +15,6 @@
 		490116F21D6E5D3B0071728F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 490116F01D6E5D3B0071728F /* LaunchScreen.storyboard */; };
 		490116FB1D6E5DAE0071728F /* ImageProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 490116FA1D6E5DAE0071728F /* ImageProvider.m */; };
 		490116FE1D6E5DC90071728F /* ScrollableImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 490116FD1D6E5DC90071728F /* ScrollableImageView.m */; };
-		4941A5D81D86079000777FA5 /* turtle.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4941A5D71D86079000777FA5 /* turtle.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,7 +33,6 @@
 		490116FC1D6E5DC90071728F /* ScrollableImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollableImageView.h; sourceTree = "<group>"; };
 		490116FD1D6E5DC90071728F /* ScrollableImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollableImageView.m; sourceTree = "<group>"; };
 		490116FF1D6E5DFC0071728F /* MultiImageDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MultiImageDataSource.h; sourceTree = "<group>"; };
-		4941A5D71D86079000777FA5 /* turtle.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = turtle.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,7 +76,6 @@
 				490116FD1D6E5DC90071728F /* ScrollableImageView.m */,
 				490116EB1D6E5D3B0071728F /* Main.storyboard */,
 				490116EE1D6E5D3B0071728F /* Assets.xcassets */,
-				4941A5D71D86079000777FA5 /* turtle.jpg */,
 				490116F01D6E5D3B0071728F /* LaunchScreen.storyboard */,
 				490116F31D6E5D3B0071728F /* Info.plist */,
 				490116E21D6E5D3B0071728F /* Supporting Files */,
@@ -153,7 +150,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				490116F21D6E5D3B0071728F /* LaunchScreen.storyboard in Resources */,
-				4941A5D81D86079000777FA5 /* turtle.jpg in Resources */,
 				490116EF1D6E5D3B0071728F /* Assets.xcassets in Resources */,
 				490116ED1D6E5D3B0071728F /* Main.storyboard in Resources */,
 			);
