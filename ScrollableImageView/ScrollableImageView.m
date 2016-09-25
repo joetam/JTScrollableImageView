@@ -117,8 +117,10 @@ const CGFloat ScrollableImageViewSnappingThreshold = 30.0f;
 
 - (void)snapCurrent
 {
-//    self.scrollView.contentOffset = self.scrollStartContentOffset;
-    self.scrollView.contentOffset = CGPointMake(CGRectGetMinX(self.currentImageView.frame), self.scrollView.contentOffset.y);
+    CGPoint offset = CGPointMake(CGRectGetMinX(self.currentImageView.frame), self.scrollView.contentOffset.y);
+    [UIView animateWithDuration:0 animations:^{
+        [self.scrollView setContentOffset:offset animated:NO];
+    }];
 }
 
 - (void)snapNext
