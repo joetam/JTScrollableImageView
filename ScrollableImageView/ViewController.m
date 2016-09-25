@@ -22,8 +22,8 @@
     self.textView2.text = @"lorem ipsum lorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsum";
     self.textView2.frame = CGRectMake(0, 600, CGRectGetWidth(self.view.frame), 200);
     self.imageView = [ScrollableImageView new];
-    self.imageView.backgroundColor = [UIColor darkGrayColor];
     self.imageView.frame = CGRectMake(0, 200, CGRectGetWidth(self.view.frame), 400);
+    self.imageView.contentMode = UIViewContentModeScaleAspectFit;
     self.imageProvider = [ImageProvider new];
     self.imageView.dataSource = self.imageProvider;
     [self.view addSubview:self.textView1];

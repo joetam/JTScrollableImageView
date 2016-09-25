@@ -139,6 +139,12 @@ const CGFloat ScrollableImageViewSnappingThreshold = 30.0f;
     [self.scrollView setContentOffset:offset animated:YES];
 }
 
+- (void)setContentMode:(UIViewContentMode)contentMode
+{
+    self.currentImageView.contentMode = contentMode;
+    self.nextImageView.contentMode = contentMode;
+    self.prevImageView.contentMode = contentMode;
+}
 
 #pragma mark - Helpers
 
