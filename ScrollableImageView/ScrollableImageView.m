@@ -47,22 +47,11 @@ const CGFloat ScrollableImageViewSnappingThreshold = 30.0f;
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-
     self.scrollView.frame = self.bounds;
 
     self.currentImageView.frame = self.scrollView.bounds;
-
-    if ([self.dataSource nextImage]) {
-        self.nextImageView.frame = CGRectOffset(self.currentImageView.frame, CGRectGetWidth(self.currentImageView.bounds),0);
-    } else {
-        self.nextImageView.frame = CGRectZero;
-    }
-
-    if ([self.dataSource prevImage]) {
-        self.prevImageView.frame = CGRectOffset(self.currentImageView.frame, -CGRectGetWidth(self.currentImageView.bounds),0);
-    } else {
-        self.prevImageView.frame = CGRectZero;
-    }
+    self.nextImageView.frame = CGRectOffset(self.currentImageView.frame, CGRectGetWidth(self.currentImageView.bounds),0);
+    self.prevImageView.frame = CGRectOffset(self.currentImageView.frame, -CGRectGetWidth(self.currentImageView.bounds),0);
 
     self.scrollView.contentSize = [self contentSizeForViews:self.scrollView.subviews];
 }
@@ -125,6 +114,11 @@ const CGFloat ScrollableImageViewSnappingThreshold = 30.0f;
 
 - (void)snapNext
 {
+    if (![self.dataSource nextImage]) {
+        [self snapCurrent];
+        return;
+    }
+
     CGPoint offset = CGPointMake(CGRectGetMinX(self.nextImageView.frame), self.scrollView.contentOffset.y);
     [UIView animateWithDuration:0.5 animations:^{
         [self.scrollView setContentOffset:offset animated:YES];
@@ -137,8 +131,19 @@ const CGFloat ScrollableImageViewSnappingThreshold = 30.0f;
 
 - (void)snapPrev
 {
+    if (![self.dataSource prevImage]) {
+        [self snapCurrent];
+        return;
+    }
+
     CGPoint offset = CGPointMake(CGRectGetMinX(self.prevImageView.frame), self.scrollView.contentOffset.y);
-    [self.scrollView setContentOffset:offset animated:YES];
+    [UIView animateWithDuration:0.5 animations:^{
+        [self.scrollView setContentOffset:offset animated:YES];
+    } completion:^(BOOL finished) {
+        [self.dataSource prev];
+        [self refreshImages];
+        [self snapCurrent];
+    }];
 }
 
 - (void)setContentMode:(UIViewContentMode)contentMode
