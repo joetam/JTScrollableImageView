@@ -64,9 +64,21 @@ const CGFloat ScrollableImageViewSnappingThreshold = 30.0f;
 
 - (void)refreshImages
 {
-    self.currentImageView.image = self.dataSource.currentImage;
-    self.prevImageView.image = self.dataSource.prevImage;
-    self.nextImageView.image = self.dataSource.nextImage;
+    [self.dataSource currentImage:^(UIImage *image) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.currentImageView.image = image;
+        });
+    }];
+    [self.dataSource nextImage:^(UIImage *image) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.nextImageView.image = image;
+        });
+    }];
+    [self.dataSource prevImage:^(UIImage *image) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.prevImageView.image = image;
+        });
+    }];
 }
 
 #pragma mark - Panning logic
@@ -107,21 +119,21 @@ const CGFloat ScrollableImageViewSnappingThreshold = 30.0f;
 - (void)snapCurrentAnimated:(BOOL)animated
 {
     CGPoint offset = CGPointMake(CGRectGetMinX(self.currentImageView.frame), self.scrollView.contentOffset.y);
-    [UIView animateWithDuration:animated ? 0.5 : 0 animations:^{
-        [self.scrollView setContentOffset:offset animated:animated];
+    [UIView animateWithDuration:animated ? 0.2 : 0 animations:^{
+        [self.scrollView setContentOffset:offset animated:NO];
     }];
 }
 
 - (void)snapNext
 {
-    if (![self.dataSource nextImage]) {
+    if (![self.dataSource hasNext]) {
         [self snapCurrentAnimated:YES];
         return;
     }
 
     CGPoint offset = CGPointMake(CGRectGetMinX(self.nextImageView.frame), self.scrollView.contentOffset.y);
-    [UIView animateWithDuration:2.0 animations:^{
-        [self.scrollView setContentOffset:offset animated:YES];
+    [UIView animateWithDuration:0.2 animations:^{
+        [self.scrollView setContentOffset:offset animated:NO];
     } completion:^(BOOL finished) {
         [self.dataSource next];
         [self refreshImages];
@@ -131,14 +143,14 @@ const CGFloat ScrollableImageViewSnappingThreshold = 30.0f;
 
 - (void)snapPrev
 {
-    if (![self.dataSource prevImage]) {
+    if (![self.dataSource hasPrev]) {
         [self snapCurrentAnimated:YES];
         return;
     }
 
     CGPoint offset = CGPointMake(CGRectGetMinX(self.prevImageView.frame), self.scrollView.contentOffset.y);
-    [UIView animateWithDuration:2.0 animations:^{
-        [self.scrollView setContentOffset:offset animated:YES];
+    [UIView animateWithDuration:0.2 animations:^{
+        [self.scrollView setContentOffset:offset animated:NO];
     } completion:^(BOOL finished) {
         [self.dataSource prev];
         [self refreshImages];

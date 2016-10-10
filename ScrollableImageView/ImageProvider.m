@@ -40,68 +40,87 @@ const NSString *URLString4 = @"https://scontent-ord1-1.xx.fbcdn.net/t39.2365-6/1
     return [self.URLs count];
 }
 
-- (UIImage *)currentImage
+- (void)imageForIndex:(NSInteger)index imageHandler:(ImageHandler)handler
 {
-    return [self imageForIndex:self.currentIndex];
+    if (index < 0 || index >= self.URLs.count) {
+        if (handler) {
+            handler(nil);
+        }
+        return;
+    }
+
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        NSURL *imageURL = self.URLs[index];
+        if (self.cache[imageURL]) {
+            if (handler) {
+                handler(self.cache[imageURL]);
+            }
+        } else {
+            [self fetchImageForURL:imageURL imageHandler:^(UIImage *image) {
+                self.cache[imageURL] = image;
+                if (handler) {
+                    handler(image);
+                }
+            }];
+        }
+    });
 }
 
-- (UIImage *)nextImage
+- (void)fetchImageForURL:(NSURL *)URL imageHandler:(ImageHandler)handler
 {
-    if (self.currentIndex + 1 < self.URLs.count) {
-        return [self imageForIndex:self.currentIndex + 1];
+    if (!URL) {
+        handler(nil);
+        return;
     }
-    return nil;
+
+    UIImage *downloadedImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:URL]];
+    if (handler) {
+        dispatch_queue_t q = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+        dispatch_async(q, ^{
+            handler(downloadedImage);
+        });
+    }
 }
 
-- (UIImage *)prevImage
+#pragma mark - MultiImageDataSource
+
+- (void)currentImage:(ImageHandler)handler
 {
-    if (self.currentIndex - 1 >= 0) {
-        return [self imageForIndex:self.currentIndex - 1];
-    }
-    return nil;
+    [self imageForIndex:self.currentIndex imageHandler:handler];
 }
 
-- (UIImage *)imageForIndex:(NSUInteger)index;
+- (void)nextImage:(ImageHandler)handler
 {
-    NSURL *imageURL = self.URLs[index];
-    if (self.cache[imageURL]) {
-        return self.cache[imageURL];
-    } else {
-        [self fetchImageForURL:imageURL];
-        // need an error-out condition otherwise it could loop forever
-        return [self imageForIndex:index];
-    }
+    [self imageForIndex:self.currentIndex+1 imageHandler:handler];
+}
+
+- (void)prevImage:(ImageHandler)handler
+{
+    [self imageForIndex:self.currentIndex-1 imageHandler:handler];
 }
 
 - (void)next
 {
     self.currentIndex += 1;
     // prefetch
-    if (self.currentIndex + 1 < self.URLs.count) {
-        [self fetchImageForURL:self.URLs[self.currentIndex+1]];
-    }
+    [self imageForIndex:self.currentIndex+1 imageHandler:nil];
 }
 
 - (void)prev
 {
     self.currentIndex -= 1;
     // prefetch
-    if (self.currentIndex - 1 >= 0) {
-        [self fetchImageForURL:self.URLs[self.currentIndex-1]];
-    }
+    [self imageForIndex:self.currentIndex-1 imageHandler:nil];
 }
 
-- (void)fetchImageForURL:(NSURL *)URL
+- (BOOL)hasNext
 {
-    if (!URL) {
-        return;
-    }
+    return self.currentIndex < self.URLs.count - 1;
+}
 
-//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-    // TODO: make async
-        UIImage *downloadedImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:URL]];
-        self.cache[URL] = downloadedImage;
-//    });
+- (BOOL)hasPrev
+{
+    return self.currentIndex > 0;
 }
 
 @end
