@@ -88,7 +88,7 @@ const CGFloat ScrollableImageViewSnappingThreshold = 30.0f;
     else if (recognizer.state == UIGestureRecognizerStateEnded) {
         CGFloat finalOffset = self.scrollView.contentOffset.x - self.scrollStartContentOffset.x;
         if (fabs(finalOffset) < ScrollableImageViewSnappingThreshold) {
-            [self snapCurrent];
+            [self snapCurrentAnimated:YES];
         } else {
             if (finalOffset > 0) {
                 [self snapNext];
@@ -104,45 +104,45 @@ const CGFloat ScrollableImageViewSnappingThreshold = 30.0f;
     self.scrollStartX = scrollView.contentOffset.x;
 }
 
-- (void)snapCurrent
+- (void)snapCurrentAnimated:(BOOL)animated
 {
     CGPoint offset = CGPointMake(CGRectGetMinX(self.currentImageView.frame), self.scrollView.contentOffset.y);
-    [UIView animateWithDuration:0 animations:^{
-        [self.scrollView setContentOffset:offset animated:NO];
+    [UIView animateWithDuration:animated ? 0.5 : 0 animations:^{
+        [self.scrollView setContentOffset:offset animated:animated];
     }];
 }
 
 - (void)snapNext
 {
     if (![self.dataSource nextImage]) {
-        [self snapCurrent];
+        [self snapCurrentAnimated:YES];
         return;
     }
 
     CGPoint offset = CGPointMake(CGRectGetMinX(self.nextImageView.frame), self.scrollView.contentOffset.y);
-    [UIView animateWithDuration:0.5 animations:^{
+    [UIView animateWithDuration:2.0 animations:^{
         [self.scrollView setContentOffset:offset animated:YES];
     } completion:^(BOOL finished) {
         [self.dataSource next];
         [self refreshImages];
-        [self snapCurrent];
+        [self snapCurrentAnimated:NO];
     }];
 }
 
 - (void)snapPrev
 {
     if (![self.dataSource prevImage]) {
-        [self snapCurrent];
+        [self snapCurrentAnimated:YES];
         return;
     }
 
     CGPoint offset = CGPointMake(CGRectGetMinX(self.prevImageView.frame), self.scrollView.contentOffset.y);
-    [UIView animateWithDuration:0.5 animations:^{
+    [UIView animateWithDuration:2.0 animations:^{
         [self.scrollView setContentOffset:offset animated:YES];
     } completion:^(BOOL finished) {
         [self.dataSource prev];
         [self refreshImages];
-        [self snapCurrent];
+        [self snapCurrentAnimated:NO];
     }];
 }
 
