@@ -57,7 +57,7 @@ const CGFloat ScrollableImageViewAnimationRate = 25.0f; // larger number means f
     self.scrollView.contentSize = [self contentSizeForViews:self.scrollView.subviews];
 }
 
-- (void)setDataSource:(id<MultiImageDataSource>)dataSource
+- (void)setDataSource:(id<JTScrollableImageViewDataSource>)dataSource
 {
     _dataSource = dataSource;
     [self refreshImages];

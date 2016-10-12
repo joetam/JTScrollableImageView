@@ -2,7 +2,7 @@
 
 typedef void (^ImageHandler)(UIImage *image);
 
-@protocol MultiImageDataSource <NSObject>
+@protocol JTScrollableImageViewDataSource <NSObject>
 
 /**
  *  Clients are responsible for calling 'next' and 'prev' when the UI has completed navigation to the next or the

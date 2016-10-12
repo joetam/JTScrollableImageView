@@ -24,7 +24,7 @@
 		490116FA1D6E5DAE0071728F /* JTScrollableImageProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTScrollableImageProvider.m; sourceTree = "<group>"; };
 		490116FC1D6E5DC90071728F /* JTScrollableImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTScrollableImageView.h; sourceTree = "<group>"; };
 		490116FD1D6E5DC90071728F /* JTScrollableImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTScrollableImageView.m; sourceTree = "<group>"; };
-		490116FF1D6E5DFC0071728F /* MultiImageDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MultiImageDataSource.h; sourceTree = "<group>"; };
+		490116FF1D6E5DFC0071728F /* JTScrollableImageViewDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JTScrollableImageViewDataSource.h; sourceTree = "<group>"; };
 		495D6E181D9874860040AE79 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		495D6E1A1D9874860040AE79 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		495D6E1B1D9874860040AE79 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -69,7 +69,7 @@
 			children = (
 				490116F91D6E5DAE0071728F /* JTScrollableImageProvider.h */,
 				490116FA1D6E5DAE0071728F /* JTScrollableImageProvider.m */,
-				490116FF1D6E5DFC0071728F /* MultiImageDataSource.h */,
+				490116FF1D6E5DFC0071728F /* JTScrollableImageViewDataSource.h */,
 				490116FC1D6E5DC90071728F /* JTScrollableImageView.h */,
 				490116FD1D6E5DC90071728F /* JTScrollableImageView.m */,
 			);

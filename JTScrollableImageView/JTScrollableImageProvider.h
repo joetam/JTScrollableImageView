@@ -1,6 +1,6 @@
 #import <Foundation/Foundation.h>
-#import "MultiImageDataSource.h"
+#import "JTScrollableImageViewDataSource.h"
 
-@interface JTScrollableImageProvider : NSObject <MultiImageDataSource>
+@interface JTScrollableImageProvider : NSObject <JTScrollableImageViewDataSource>
 
 @end
