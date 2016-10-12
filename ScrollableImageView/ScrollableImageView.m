@@ -1,6 +1,7 @@
 #import "ScrollableImageView.h"
 
 const CGFloat ScrollableImageViewSnappingThreshold = 30.0f;
+const CGFloat ScrollableImageViewAnimationRate = 0.15f;
 
 @interface ScrollableImageView () <UIScrollViewDelegate>
 
@@ -119,9 +120,11 @@ const CGFloat ScrollableImageViewSnappingThreshold = 30.0f;
 - (void)snapCurrentAnimated:(BOOL)animated
 {
     CGPoint offset = CGPointMake(CGRectGetMinX(self.currentImageView.frame), self.scrollView.contentOffset.y);
-    [UIView animateWithDuration:animated ? 0.2 : 0 animations:^{
+    if (animated) {
+        [self animateOffset:offset completion:nil];
+    } else {
         [self.scrollView setContentOffset:offset animated:NO];
-    }];
+    }
 }
 
 - (void)snapNext
@@ -165,7 +168,9 @@ const CGFloat ScrollableImageViewSnappingThreshold = 30.0f;
 
 - (void)animateOffset:(CGPoint)offset completion:(void (^)(BOOL finished))completion
 {
-    [UIView animateWithDuration:0.2
+    CGFloat dx = fabs(self.scrollView.contentOffset.x - offset.x);
+    NSTimeInterval duration = ScrollableImageViewAnimationRate * dx / CGRectGetWidth(self.scrollView.bounds);
+    [UIView animateWithDuration:duration
                           delay:0
          usingSpringWithDamping:1.0
           initialSpringVelocity:0
