@@ -157,13 +157,6 @@ const CGFloat ScrollableImageViewAnimationRate = 25.0f; // larger number means f
     }];
 }
 
-- (void)setContentMode:(UIViewContentMode)contentMode
-{
-    self.currentImageView.contentMode = contentMode;
-    self.nextImageView.contentMode = contentMode;
-    self.prevImageView.contentMode = contentMode;
-}
-
 #pragma mark - Animation
 
 - (void)animateOffset:(CGPoint)offset completion:(void (^)(BOOL finished))completion
@@ -196,6 +189,15 @@ const CGFloat ScrollableImageViewAnimationRate = 25.0f; // larger number means f
         result = CGRectUnion([views[i] frame], result);
     }
     return result.size;
+}
+
+#pragma mark - Misc
+
+- (void)setContentMode:(UIViewContentMode)contentMode
+{
+    self.currentImageView.contentMode = contentMode;
+    self.nextImageView.contentMode = contentMode;
+    self.prevImageView.contentMode = contentMode;
 }
 
 @end
