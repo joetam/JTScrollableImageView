@@ -132,9 +132,7 @@ const CGFloat ScrollableImageViewSnappingThreshold = 30.0f;
     }
 
     CGPoint offset = CGPointMake(CGRectGetMinX(self.nextImageView.frame), self.scrollView.contentOffset.y);
-    [UIView animateWithDuration:0.2 animations:^{
-        [self.scrollView setContentOffset:offset animated:NO];
-    } completion:^(BOOL finished) {
+    [self animateOffset:offset completion:^(BOOL finished) {
         [self.dataSource next];
         [self refreshImages];
         [self snapCurrentAnimated:NO];
@@ -149,9 +147,7 @@ const CGFloat ScrollableImageViewSnappingThreshold = 30.0f;
     }
 
     CGPoint offset = CGPointMake(CGRectGetMinX(self.prevImageView.frame), self.scrollView.contentOffset.y);
-    [UIView animateWithDuration:0.2 animations:^{
-        [self.scrollView setContentOffset:offset animated:NO];
-    } completion:^(BOOL finished) {
+    [self animateOffset:offset completion:^(BOOL finished) {
         [self.dataSource prev];
         [self refreshImages];
         [self snapCurrentAnimated:NO];
@@ -163,6 +159,24 @@ const CGFloat ScrollableImageViewSnappingThreshold = 30.0f;
     self.currentImageView.contentMode = contentMode;
     self.nextImageView.contentMode = contentMode;
     self.prevImageView.contentMode = contentMode;
+}
+
+#pragma mark - Animation
+
+- (void)animateOffset:(CGPoint)offset completion:(void (^)(BOOL finished))completion
+{
+    [UIView animateWithDuration:0.2
+                          delay:0
+         usingSpringWithDamping:1.0
+          initialSpringVelocity:0
+                        options:UIViewAnimationOptionCurveEaseOut
+                     animations:^{
+                         [self.scrollView setContentOffset:offset animated:NO];
+    } completion:^(BOOL finished) {
+        if (completion) {
+            completion(finished);
+        }
+    }];
 }
 
 #pragma mark - Helpers
