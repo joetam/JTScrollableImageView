@@ -1,7 +1,7 @@
 #import "JTScrollableImageView.h"
 
 const CGFloat ScrollableImageViewSnappingThreshold = 30.0f;
-const CGFloat ScrollableImageViewAnimationRate = 0.15f;
+const CGFloat ScrollableImageViewAnimationRate = 25.0f; // larger number means faster animation
 
 @interface JTScrollableImageView () <UIScrollViewDelegate>
 
@@ -169,7 +169,7 @@ const CGFloat ScrollableImageViewAnimationRate = 0.15f;
 - (void)animateOffset:(CGPoint)offset completion:(void (^)(BOOL finished))completion
 {
     CGFloat dx = fabs(self.scrollView.contentOffset.x - offset.x);
-    NSTimeInterval duration = ScrollableImageViewAnimationRate * dx / CGRectGetWidth(self.scrollView.bounds);
+    NSTimeInterval duration = (log(dx+0.01)+2)/ScrollableImageViewAnimationRate;  // + 0.01 to avoid log(x) -> INF
     [UIView animateWithDuration:duration
                           delay:0
          usingSpringWithDamping:1.0
