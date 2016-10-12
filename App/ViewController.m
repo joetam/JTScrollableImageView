@@ -13,7 +13,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor darkGrayColor];
+    self.view.backgroundColor = [UIColor colorWithRed:68/255.0 green:68/255.0 blue:79/255.0 alpha:1.0];
 
     self.imageView = [JTScrollableImageView new];
     self.imageView.frame = CGRectMake(0, 0, CGRectGetWidth(self.view.frame), 330);
