@@ -1,11 +1,11 @@
-#import "ImageProvider.h"
+#import "JTScrollableImageProvider.h"
 
 const NSString *URLString1 = @"https://scontent-ord1-1.xx.fbcdn.net/t39.2365-6/13679843_1433045310042694_2044999515_n.jpg";
 const NSString *URLString2 = @"https://scontent-ord1-1.xx.fbcdn.net/t39.2365-6/13679837_1101895823190612_932461675_n.jpg";
 const NSString *URLString3 = @"https://scontent-ord1-1.xx.fbcdn.net/t39.2365-6/13640651_1653363894977744_738647184_n.jpg";
 const NSString *URLString4 = @"https://scontent-ord1-1.xx.fbcdn.net/t39.2365-6/13911044_264029583981700_1832665714_n.jpg";
 
-@interface ImageProvider ()
+@interface JTScrollableImageProvider ()
 
 @property (nonatomic, strong) NSArray *URLs;
 @property (nonatomic, assign) NSInteger currentIndex;
@@ -13,7 +13,7 @@ const NSString *URLString4 = @"https://scontent-ord1-1.xx.fbcdn.net/t39.2365-6/1
 
 @end
 
-@implementation ImageProvider
+@implementation JTScrollableImageProvider
 
 - (instancetype)init
 {
