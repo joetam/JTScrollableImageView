@@ -1,7 +1,7 @@
 #import <UIKit/UIKit.h>
 #import "MultiImageDataSource.h"
 
-@interface ScrollableImageView : UIView
+@interface JTScrollableImageView : UIView
 
 @property (nonatomic, weak) id<MultiImageDataSource> dataSource;
 

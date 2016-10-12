@@ -1,9 +1,9 @@
-#import "ScrollableImageView.h"
+#import "JTScrollableImageView.h"
 
 const CGFloat ScrollableImageViewSnappingThreshold = 30.0f;
 const CGFloat ScrollableImageViewAnimationRate = 0.15f;
 
-@interface ScrollableImageView () <UIScrollViewDelegate>
+@interface JTScrollableImageView () <UIScrollViewDelegate>
 
 @property (nonatomic, strong) UIImageView *currentImageView;
 @property (nonatomic, strong) UIImageView *prevImageView;
@@ -16,7 +16,7 @@ const CGFloat ScrollableImageViewAnimationRate = 0.15f;
 
 @end
 
-@implementation ScrollableImageView
+@implementation JTScrollableImageView
 
 - (instancetype)init
 {
