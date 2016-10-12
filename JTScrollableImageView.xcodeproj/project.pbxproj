@@ -127,7 +127,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 490116DA1D6E5D3B0071728F /* Build configuration list for PBXProject "ScrollableImageView" */;
+			buildConfigurationList = 490116DA1D6E5D3B0071728F /* Build configuration list for PBXProject "JTScrollableImageView" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -286,7 +286,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		490116DA1D6E5D3B0071728F /* Build configuration list for PBXProject "ScrollableImageView" */ = {
+		490116DA1D6E5D3B0071728F /* Build configuration list for PBXProject "JTScrollableImageView" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				490116F41D6E5D3B0071728F /* Debug */,

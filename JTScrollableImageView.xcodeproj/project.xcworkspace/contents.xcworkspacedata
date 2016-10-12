@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:ScrollableImageView.xcodeproj">
+      location = "self:/Users/joetam/Repos/ScrollableImageView/JTScrollableImageView.xcodeproj">
    </FileRef>
 </Workspace>
