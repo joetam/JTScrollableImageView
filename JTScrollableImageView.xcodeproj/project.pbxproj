@@ -50,7 +50,7 @@
 		490116D61D6E5D3B0071728F = {
 			isa = PBXGroup;
 			children = (
-				490116E11D6E5D3B0071728F /* ScrollableImageView */,
+				490116E11D6E5D3B0071728F /* JTScrollableImageView */,
 				495D6E0C1D9873AE0040AE79 /* App */,
 				490116E01D6E5D3B0071728F /* Products */,
 			);
@@ -64,7 +64,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		490116E11D6E5D3B0071728F /* ScrollableImageView */ = {
+		490116E11D6E5D3B0071728F /* JTScrollableImageView */ = {
 			isa = PBXGroup;
 			children = (
 				490116F91D6E5DAE0071728F /* ImageProvider.h */,
@@ -73,7 +73,7 @@
 				490116FC1D6E5DC90071728F /* JTScrollableImageView.h */,
 				490116FD1D6E5DC90071728F /* JTScrollableImageView.m */,
 			);
-			path = ScrollableImageView;
+			path = JTScrollableImageView;
 			sourceTree = "<group>";
 		};
 		495D6E0C1D9873AE0040AE79 /* App */ = {
